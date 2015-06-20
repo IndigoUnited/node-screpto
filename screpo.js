@@ -30,6 +30,13 @@ program
   .option('-c, --config <name>', 'the config to be used (e.g.: myself, myorg)')
   .action(entrypoint);
 
+// Ugly hack, * has a special meaning in commander
+process.argv.forEach(function (arg, index) {
+    if (arg === '*') {
+        process.argv[index] = '?';
+    }
+});
+
 program.parse(process.argv);
 
 if (!executed) {
@@ -41,8 +48,8 @@ if (!executed) {
 function entrypoint(pattern, script, options) {
     executed = true;
 
-    setupConfig(options.config);
     pattern = pattern.replace(/\?/g, '*');
+    setupConfig(options.config);
 
     // List repos
     listRepos(pattern, function (err, repos) {

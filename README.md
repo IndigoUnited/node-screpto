@@ -24,7 +24,8 @@ There are instructions there, simply follow them.
 First create a script file. It's recommend to put the script files in the `script` folder. Also, if your scripts uses `nodejs` and has a dependency, install it inside that folder so that the root `package.json` does not get polluted with the script's dependencies.   
 There is an example of a script file that changes the license of a repository.
 
-`$ screpto * scripts/mit_license.js`
+`$ screpto "*" scripts/mit_license.js` -> Will run the script for each repository
+`$ screpto "node-*" scripts/mit_license.js` -> Will run the script for each repository that starts with `node-`
 
 The first argument is the `pattern` which is a [minimatch](https://github.com/isaacs/minimatch) compatible pattern. For each repository that matched the pattern, `screpto` will fetch and reset it to the last commit on the remote `master` branch.
 
