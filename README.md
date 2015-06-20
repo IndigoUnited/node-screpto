@@ -21,7 +21,7 @@ There are instructions there, simply follow them.
 
 ## Running
 
-First create a script file. It's recommend to put the script files in the `script` folder. Also, if your scripts uses `nodejs` and has a dependency, install it inside that folder so that the root `package.json` does not get polluted with the script's dependencies.   
+First create a script file with `execute` permission (`chmod +x`). It's recommend to put the script files in the `script` folder. Also, if your scripts uses `nodejs` and has a dependency, install it inside that folder so that the root `package.json` does not get polluted with the script's dependencies.   
 There is an example of a script file that changes the license of a repository.
 
 `$ screpto "*" scripts/mit_license.js`   
