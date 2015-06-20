@@ -18,6 +18,7 @@ pkg = require(file);
 
 // Is it ok already?
 if (pkg.license === 'MIT') {
+    process.stdout.write('Nothing to be changed.\n');
     process.exit();
 }
 
