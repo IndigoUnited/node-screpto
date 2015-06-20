@@ -1,0 +1,12 @@
+{
+    "myself": {
+        "type": "user",
+        "name": "<your username>",
+        "access_token": "<generate one for your GitHub account here: https://github.com/settings/tokens>"
+    },
+    "myorg": {
+        "type": "org",
+        "name": "<some organization>",
+        "access_token": "<generate one for your GitHub account here: https://github.com/settings/tokens>"
+    }
+}

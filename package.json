@@ -1,0 +1,33 @@
+{
+  "name": "screpto",
+  "version": "0.1.0",
+  "description": "Small utility to run a script across several repositories",
+  "main": "screpto.js",
+  "bugs": {
+    "url": "https://github.com/IndigoUnited/node-screpto/issues/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IndigoUnited/node-screpto.git"
+  },
+  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.2.1",
+    "chalk": "^1.0.0",
+    "commander": "^2.8.1",
+    "err-code": "^0.1.2",
+    "minimatch": "^2.0.8",
+    "mout": "^0.11.0",
+    "promptly": "^0.2.1"
+  },
+  "keywords": [
+    "git",
+    "github",
+    "script",
+    "repository",
+    "repo",
+    "automate"
+  ],
+  "private": true
+}
