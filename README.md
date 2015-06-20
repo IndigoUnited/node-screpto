@@ -8,7 +8,7 @@ Lets say that you want to bump a version of a common dependency across several r
 ## Installation
 
 `$ git clone git@github.com:IndigoUnited/screpto.git`   
-`$ cd screpto && rm -rf .git`
+`$ cd screpto && rm -rf .git && cp config.example.json config.json`
 
 Why isn't this published in `npm`? Well because I didn't feel the need for it, yet..
 

@@ -1,6 +1,7 @@
 node_modules/
 npm-debug.*
-repos/*
-scripts/*
-!scripts/package.json
-!scripts/mit_license.js
+/repos/*
+/config.json
+/scripts/*
+!/scripts/package.json
+!/scripts/mit_license.js
