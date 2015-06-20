@@ -1,9 +1,0 @@
-{
-  "name": "screpto-scripts",
-  "version": "0.1.0",
-  "description": "The screpto scripts",
-  "main": "index.js",
-  "author": "Yourself",
-  "dependencies": {},
-  "private": true
-}
