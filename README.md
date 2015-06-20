@@ -7,8 +7,8 @@ Lets say that you want to bump a version of a common dependency across several r
 
 ## Installation
 
-`$ git clone git@github.com:IndigoUnited/screpto.git`   
-`$ cd screpto && npm install && cp config.example.json config.json`
+`$ git clone git@github.com:IndigoUnited/node-screpto.git && cd code-screpto`   
+`$ npm install && cp config.example.json config.json`
 
 Why isn't this published in `npm`? Well because I didn't feel the need for it, yet..
 
@@ -24,14 +24,14 @@ There are instructions there, simply follow them.
 First create a script file with `execute` permission (`chmod +x`). It's recommend to put the script files in the `script` folder. Also, if your scripts uses `nodejs` and has a dependency, install it inside that folder so that the root `package.json` does not get polluted with the script's dependencies.   
 There is an example of a script file that changes the license of a repository.
 
-`$ screpto "*" scripts/mit_license.js`   
+`$ ./screpto.js "*" scripts/mit_license.js`   
 Will run the script for each repository.
 
-`$ screpto "node-*" scripts/mit_license.js`   
+`$ ./screpto.js "node-*" scripts/mit_license.js`   
 Will run the script for each repository that starts with `node-`.
 
 The first argument is the `pattern` which is a [minimatch](https://github.com/isaacs/minimatch) compatible pattern. For each repository that matched the pattern, `screpto` will fetch and reset it to the last commit on the remote `master` branch.
 
 The second argument is the `script` to be run for each repository. The script will be run with `REPO_DIR` environment variable pointing to the repository directory. If the script exits with a code different than `0`, `screpto` will abort.
 
-Isn't that easy? For more information, check the usage help with `$ screpto -h`.
+Isn't that easy? For more information, check the usage help with `$ ./screpto.js -h`.
