@@ -29,5 +29,8 @@
     "repo",
     "automate"
   ],
+  "scripts": {
+    "postinstall": "test -f config.json || cp config.dist.json config.json; test -f scripts/package.json || cp scripts/package.dist.json scripts/package.json"
+  },
   "private": true
 }
