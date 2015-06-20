@@ -3,5 +3,5 @@ npm-debug.*
 /repos/*
 /config.json
 /scripts/*
-!/scripts/package.json
+!/scripts/package.dist.json
 !/scripts/mit_license.js

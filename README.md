@@ -7,8 +7,8 @@ Lets say that you want to bump a version of a common dependency across several r
 
 ## Installation
 
-`$ git clone git@github.com:IndigoUnited/node-screpto.git && cd code-screpto`   
-`$ npm install && cp config.example.json config.json`
+`$ git clone git@github.com:IndigoUnited/node-screpto.git && cd node-screpto && rm -rf .git`   
+`$ npm install && mv config.dist.json config.json && mv scripts/package.dist.json scripts/package.json`
 
 Why isn't this published in `npm`? Well because I didn't feel the need for it, yet..
 
