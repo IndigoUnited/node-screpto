@@ -32,6 +32,6 @@ Will run the script for each repository that starts with `node-`.
 
 The first argument is the `pattern` which is a [minimatch](https://github.com/isaacs/minimatch) compatible pattern. For each repository that matched the pattern, `screpto` will fetch and reset it to the last commit on the remote `master` branch.
 
-The second argument is the `script` to be run for each repository. The script will be run with `REPO_DIR` environment variable pointing to the repository directory. If the script exits with a code different than `0`, `screpto` will abort.
+The second argument is the `script` to be run for each repository, with `REPO_DIR` environment variable pointing to the repository directory. If the script exits with a code different than `0`, `screpto` will abort.
 
 Isn't that easy? For more information, check the usage help with `$ ./screpto.js -h`.
