@@ -59,7 +59,7 @@ function entrypoint(pattern, script, options) {
         }
 
         if (!repos.length) {
-            process.stdout.write('No repositories.\n');
+            process.stdout.write('No repositories matched the pattern ' + pattern + '.\n');
             process.exit();
         }
 
