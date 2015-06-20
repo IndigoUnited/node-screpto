@@ -59,7 +59,7 @@ function entrypoint(pattern, script, options) {
         }
 
         if (!repos.length) {
-            process.stdout.write('No repositories matched the pattern ' + pattern + '.\n');
+            process.stdout.write('No repositories matched the pattern ' + pattern + '\n');
             process.exit();
         }
 
@@ -105,7 +105,7 @@ function listRepos(pattern, callback) {
 
         request(url, {
             headers: {
-                'User-Agent': 'request',
+                'User-Agent': 'screpto nodejs',
                 'Accept': 'application/vnd.github.v3+json'
             }
         }, function (err, response, body) {
@@ -130,11 +130,9 @@ function listRepos(pattern, callback) {
                 return pick(repo, ['name', 'html_url', 'ssh_url']);
             });
 
-            if (pattern) {
-                repos = repos.filter(function (repo) {
-                    return minimatch(repo.name, pattern);
-                });
-            }
+            repos = repos.filter(function (repo) {
+                return minimatch(repo.name, pattern);
+            });
 
             allRepos.push.apply(allRepos, repos);
 
@@ -163,6 +161,7 @@ function listRepos(pattern, callback) {
 
                 url = nextPage ? nextPage.url : null;
             }
+
             callback();
         });
     }, function () {
