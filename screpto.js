@@ -27,6 +27,7 @@ program
 
 program
   .arguments('<pattern> <script>')
+  .description('Runs script for each repository that matched a pattern.')
   .option('-c, --config <name>', 'the config to be used (e.g.: myself, myorg)')
   .action(entrypoint);
 
