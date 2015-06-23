@@ -1,6 +1,6 @@
 {
   "name": "screpto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Small utility to run a script across several repositories",
   "main": "screpto.js",
   "bugs": {
