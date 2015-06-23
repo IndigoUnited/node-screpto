@@ -29,7 +29,7 @@ program
   .arguments('<pattern> <script>')
   .description('Runs script for each repository that matched a pattern.')
   .option('-c, --config <name>', 'the config to be used (e.g.: myself, myorg)')
-  .action(entrypoint);
+  .action(screpto);
 
 // Ugly hack, * has a special meaning in commander
 process.argv.forEach(function (arg, index) {
@@ -46,7 +46,7 @@ if (!executed) {
 
 // ------------------------------------
 
-function entrypoint(pattern, script, options) {
+function screpto(pattern, script, options) {
     executed = true;
 
     pattern = pattern.replace(/\?/g, '*');
