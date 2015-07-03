@@ -19,7 +19,8 @@
     "err-code": "^0.1.2",
     "minimatch": "^2.0.8",
     "mout": "^0.11.0",
-    "promptly": "^0.2.1"
+    "promptly": "^0.2.1",
+    "request": "^2.58.0"
   },
   "keywords": [
     "git",
