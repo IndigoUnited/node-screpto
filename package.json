@@ -13,13 +13,13 @@
   "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "^1.2.1",
+    "async": "^2.1.4",
     "chalk": "^1.0.0",
     "commander": "^2.8.1",
-    "err-code": "^0.1.2",
-    "minimatch": "^2.0.8",
-    "mout": "^0.11.0",
-    "promptly": "^0.2.1",
+    "err-code": "^1.1.1",
+    "minimatch": "^3.0.3",
+    "mout": "^1.0.0",
+    "promptly": "^2.1.0",
     "request": "^2.58.0"
   },
   "keywords": [
