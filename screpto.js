@@ -13,7 +13,7 @@ var async     = require('async');
 var minimatch = require('minimatch');
 var find      = require('mout/array/find');
 var pick      = require('mout/object/pick');
-var mixIn     = require('mout/object/mixin');
+var mixIn     = require('mout/object/mixIn');
 var rpad      = require('mout/string/rpad');
 var fail      = require('./util/fail');
 var exec      = require('./util/exec');
@@ -126,12 +126,12 @@ function listRepos(pattern, callback) {
             body = JSON.parse(body);
 
             // Process repos
-            repos = body.map(function (repo) {
+            repos = body
+            .filter(function (repo) {
+                return !repo.archived && minimatch(repo.name, pattern);
+            })
+            .map(function (repo) {
                 return pick(repo, ['name', 'html_url', 'ssh_url']);
-            });
-
-            repos = repos.filter(function (repo) {
-                return minimatch(repo.name, pattern);
             });
 
             allRepos.push.apply(allRepos, repos);
