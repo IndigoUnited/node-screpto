@@ -24,7 +24,7 @@ if (pkg.license === 'MIT') {
 
 // Change to MIT and save file
 pkg.license = 'MIT';
-fs.writeFileSync(file + '/package.json', JSON.stringify(pkg, null, 2) + '\n');
+fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');
 
 // Commit & push
 exec('git', ['commit', '-a', '-m', 'Change license to MIT (made with screpto)'], { cwd: repoDir });
