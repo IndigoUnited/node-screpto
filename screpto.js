@@ -95,7 +95,7 @@ function setupConfig(name) {
 }
 
 function listRepos(pattern, callback) {
-    var url = 'https://api.github.com/' + config.type + 's/' + config.name + '/repos?access_token=' + config.access_token;
+    var url = 'https://api.github.com/' + config.type + 's/' + config.name + '/repos';
     var allRepos = [];
 
     process.stdout.write(chalk.bold(chalk.cyan('>') + ' Fetching repositories from GitHub\n'));
@@ -106,7 +106,8 @@ function listRepos(pattern, callback) {
         request(url, {
             headers: {
                 'User-Agent': 'screpto nodejs',
-                'Accept': 'application/vnd.github.v3+json'
+                'Accept': 'application/vnd.github.v3+json',
+                'Authorization': 'token ' + config.access_token
             }
         }, function (err, response, body) {
             var repos;
@@ -207,6 +208,7 @@ function fetchRepo(repo) {
     }
 
     exec('git', ['fetch', '--tags'], { cwd: repo.dir, stdio: 'inherit' });
+    exec('git', ['checkout', 'master'], { cwd: repo.dir, stdio: 'inherit' });
     exec('git', ['reset', '--hard', 'refs/remotes/origin/master'], { cwd: repo.dir, stdio: 'inherit' });
 }
 
