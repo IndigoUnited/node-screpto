@@ -208,7 +208,9 @@ function fetchRepo(repo) {
     }
 
     exec('git', ['fetch', '--tags'], { cwd: repo.dir, stdio: 'inherit' });
-    exec('git', ['checkout', 'master'], { cwd: repo.dir, stdio: 'inherit' });
+    const { stdout: remoteHead } = exec('git', ['symbolic-ref', 'refs/remotes/origin/HEAD'], { cwd: repo.dir });
+    const defaultBranch = Buffer(remoteHead).toString().replace('refs/remotes/origin/', '').trim();
+    exec('git', ['checkout', defaultBranch], { cwd: repo.dir, stdio: 'inherit' });
     exec('git', ['reset', '--hard', 'refs/remotes/origin/master'], { cwd: repo.dir, stdio: 'inherit' });
 }
 
