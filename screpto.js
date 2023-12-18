@@ -26,7 +26,7 @@ program
   .version(pkg.version);
 
 program
-  .arguments('<pattern> <script>')
+  .arguments('<script> <patterns...>')
   .description('Runs script for each repository that matched a pattern.')
   .option('-c, --config <name>', 'the config to be used (e.g.: myself, myorg)')
   .action(screpto);
@@ -46,20 +46,19 @@ if (!executed) {
 
 // ------------------------------------
 
-function screpto(pattern, script, options) {
+function screpto(script, patterns, options) {
     executed = true;
 
-    pattern = pattern.replace(/\?/g, '*');
     setupConfig(options.config);
 
     // List repos
-    listRepos(pattern, function (err, repos) {
+    listRepos(patterns, function (err, repos) {
         if (err) {
             return fail(err);
         }
 
         if (!repos.length) {
-            process.stdout.write('No repositories matched the pattern ' + pattern + '\n');
+            process.stdout.write('No repositories matched the patterns\n');
             process.exit();
         }
 
@@ -67,8 +66,9 @@ function screpto(pattern, script, options) {
         confirmWithUser(repos, function () {
             // For each repo, fetch and script it
             repos.forEach(function (repo) {
-                fetchRepo(repo);
-                scriptRepo(repo, script);
+                const isEmpty = fetchRepo(repo);
+
+                !isEmpty && scriptRepo(repo, script);
             });
         });
     });
@@ -94,7 +94,7 @@ function setupConfig(name) {
     process.stdout.write(chalk.bold(chalk.cyan('>') + ' Using ' + name + ' configuration\n'));
 }
 
-function listRepos(pattern, callback) {
+function listRepos(patterns, callback) {
     var url = 'https://api.github.com/' + config.type + 's/' + config.name + '/repos';
     var allRepos = [];
 
@@ -129,7 +129,9 @@ function listRepos(pattern, callback) {
             // Process repos
             repos = body
             .filter(function (repo) {
-                return !repo.archived && minimatch(repo.name, pattern);
+                const matched = patterns.some((pattern) => minimatch(repo.name, pattern));
+
+                return !repo.archived && matched;
             })
             .map(function (repo) {
                 return pick(repo, ['name', 'html_url', 'ssh_url']);
@@ -205,6 +207,13 @@ function fetchRepo(repo) {
         exec('git', ['clone', repo.ssh_url, repo.dir], { stdio: 'inherit' });
     } else {
         exec('git', ['fetch', '--prune'], { cwd: repo.dir, stdio: 'inherit' });
+    }
+
+    // Check if repo is empty.
+    const findResult = exec('find', ['.git/objects', '-type', 'f'], { cwd: repo.dir });
+
+    if (!findResult.stdout.length) {
+        return true;
     }
 
     exec('git', ['fetch', '--tags'], { cwd: repo.dir, stdio: 'inherit' });
