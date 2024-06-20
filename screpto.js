@@ -129,7 +129,7 @@ function listRepos(patterns, callback) {
             // Process repos
             repos = body
             .filter(function (repo) {
-                const matched = patterns.some((pattern) => minimatch(repo.name, pattern));
+                const matched = patterns.some((pattern) => minimatch(repo.name, pattern.replace(/^\?$/, '*')));
 
                 return !repo.archived && matched;
             })
